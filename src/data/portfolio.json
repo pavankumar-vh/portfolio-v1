@@ -1,0 +1,147 @@
+{
+  "profile": {
+    "name": "Pavan Kumar V H",
+    "firstName": "Pavan",
+    "lastName": "Kumar",
+    "title": "AI Engineer & Full Stack Developer",
+    "tagline": "Building intelligent systems that actually ship.",
+    "location": "Chennai, Tamil Nadu, India",
+    "email": "pavankumarvh@outlook.com",
+    "github": "https://github.com/pavankumar-vh",
+    "linkedin": "https://linkedin.com/in/pavankumarvh",
+    "instagram": "https://instagram.com/volt.json",
+    "bio": "Full-stack developer with a focus on AI-driven products. I build systems that combine modern web architecture with cutting-edge AI — from RAG pipelines and vector search to graph-based fraud detection. Alongside engineering, I bring a creative eye through cinematography and professional photography."
+  },
+  "experience": [
+    {
+      "role": "Co-Founder",
+      "company": "The Protein Company",
+      "type": "Full-time",
+      "period": "Oct 2025 – Present",
+      "location": "Chennai, India",
+      "description": "Co-founded a nutrition startup incubated at Vels Innovation Council. Leading strategy, operations, and business development — from market analysis and unit economics to partnership discussions with gyms and brands."
+    },
+    {
+      "role": "Associate",
+      "company": "LoopZen",
+      "type": "Full-time",
+      "period": "Jan 2025 – Oct 2025",
+      "location": "Chennai, India",
+      "description": "Digital agency building SaaS products, websites, apps, and AI automations for clients. Also provided cinematography and professional photography for marketing support."
+    },
+    {
+      "role": "Co-Founder",
+      "company": "Loop Computers",
+      "type": "Full-time",
+      "period": "Jan 2021 – May 2023",
+      "location": "Hybrid",
+      "description": "Built and sold custom gaming and office computers. Provided hardware support to businesses, sold refurbished GPUs, and developed LAN networking solutions for offices."
+    }
+  ],
+  "education": {
+    "degree": "B.Tech — Computer Science Engineering",
+    "university": "Vels University × Kalvium",
+    "period": "2024 – 2028",
+    "status": "Currently pursuing"
+  },
+  "skills": {
+    "languages": ["JavaScript", "TypeScript", "Python", "Solidity", "HTML/CSS"],
+    "frontend": ["React", "Next.js", "Vite", "TailwindCSS", "Framer Motion", "Material UI"],
+    "backend": ["Node.js", "Express.js", "FastAPI", "Firebase"],
+    "databases": ["MongoDB", "PostgreSQL", "Redis", "Pinecone"],
+    "ai / ml": ["Gemini AI", "RAG Technology", "LLMs", "Vector Embeddings", "Graph Analytics"],
+    "devops": ["Docker", "Kubernetes", "Git", "Vercel", "Render", "AWS"],
+    "web3": ["Ethereum", "Web3.js", "Smart Contracts", "MetaMask"],
+    "security": ["JWT", "OAuth", "AES-256", "Helmet.js", "CORS"]
+  },
+  "ventures": [
+    {
+      "name": "The Protein Company",
+      "role": "Co-Founder",
+      "period": "Oct 2025 – Present",
+      "status": "current",
+      "description": "Nutrition startup incubated at Vels Innovation Council. Building next-gen nutrition solutions — leading strategy, unit economics, and partnerships with gyms and brands across Chennai."
+    },
+    {
+      "name": "LoopZen",
+      "role": "Associate",
+      "period": "Jan 2025 – Oct 2025",
+      "status": "past",
+      "description": "Digital agency building SaaS products, websites, and AI automations for clients. Also built EventVision — an AI face-recognition photo delivery system that handled 7K+ guests."
+    },
+    {
+      "name": "Loop Computers",
+      "role": "Co-Founder",
+      "period": "Jan 2021 – May 2023",
+      "status": "past",
+      "description": "Custom PC building startup. Designed gaming and office rigs, sold refurbished GPUs, provided hardware support, and built LAN networking solutions for businesses."
+    }
+  ],
+  "projects": [
+    {
+      "name": "RAGHost",
+      "tagline": "// open-source AI chatbot platform",
+      "description": "Full-stack RAG chatbot builder. Upload documents, connect Pinecone and Gemini, deploy an embeddable chat widget instantly. Engineered for scale with Redis caching, Bull queues, and CPU clustering.",
+      "tech": ["React", "Node.js", "MongoDB", "Firebase", "Pinecone", "Gemini AI", "Redis"],
+      "features": ["Multi-bot management", "Analytics dashboard", "8 widget templates", "AES-256 encryption", "CPU clustering"],
+      "links": { "live": "https://rag-host.vercel.app", "github": "https://github.com/pavankumar-vh/RAGHost" },
+      "stars": 4,
+      "featured": true
+    },
+    {
+      "name": "SynapseAI",
+      "tagline": "// AI content generation platform",
+      "description": "AI content generation platform powered by Gemini 2.0. Generates social media posts, blog ideas, full articles, and code explanations. Built with a credit system, admin dashboard, and support ticket flow.",
+      "tech": ["React", "Node.js", "MongoDB", "Firebase", "Gemini AI", "Framer Motion"],
+      "features": ["Credit system", "Admin dashboard", "Support tickets", "Generation history"],
+      "links": { "live": "https://synapse-ai-eight.vercel.app", "github": "https://github.com/pavankumar-vh/SynapseAI" },
+      "stars": 1,
+      "featured": true
+    },
+    {
+      "name": "Quantora AI",
+      "tagline": "// graph-native fraud detection",
+      "description": "Real-time fraud detection framework using dynamic graph modeling. Custom SAGRA algorithm detects coordinated fraud rings, circular money flows, and synthetic identity clusters with an explainability layer.",
+      "tech": ["Next.js", "FastAPI", "Python", "Graph Analytics", "Louvain Detection"],
+      "features": ["SAGRA algorithm", "Real-time pipeline", "Fraud ring detection", "Explainability layer"],
+      "links": { "live": "https://quantora-three.vercel.app", "github": "https://github.com/pavankumar-vh/Quantora" },
+      "stars": 1,
+      "hackathon": "DigitHon 3.0",
+      "featured": true
+    },
+    {
+      "name": "typing.dev",
+      "tagline": "// typing trainer for developers",
+      "description": "Terminal-aesthetic typing practice app with AI-generated code snippets. CRT phosphor design with JetBrains Mono, scanline effects, and a global leaderboard. Built for developers who want to type faster.",
+      "tech": ["React", "Node.js", "MongoDB", "Firebase", "Gemini API", "Framer Motion"],
+      "features": ["WPM/accuracy tracking", "AI-generated snippets", "Global leaderboard", "Activity heatmap"],
+      "links": { "github": "https://github.com/pavankumar-vh/typing.dev" },
+      "stars": 1,
+      "featured": true
+    },
+    {
+      "name": "Physique OS",
+      "tagline": "// body transformation tracker",
+      "description": "Visual fitness tracking platform with interactive charts, before/after photo sliders, streak system, and achievement badges. Glassmorphism UI with measurement tracking and PDF export.",
+      "tech": ["React", "Node.js", "MongoDB", "JWT", "Chart.js"],
+      "features": ["Interactive charts", "Photo comparison", "Achievement badges", "PDF export"],
+      "links": { "github": "https://github.com/pavankumar-vh/physiqueOS" },
+      "featured": true
+    },
+    {
+      "name": "LoopZen EventVision",
+      "tagline": "// AI event photo delivery",
+      "description": "Face-recognition system for events. Guests scan a QR code, register their face, and receive their photos instantly. Successfully handled 7,000+ guests at a single wedding event.",
+      "tech": ["AI/ML", "Face Recognition", "QR Integration", "Node.js"],
+      "features": ["7K+ guest capacity", "Face-matched delivery", "QR registration", "Real-time processing"],
+      "links": {},
+      "featured": true
+    }
+  ],
+  "tabs": [
+    { "id": "home", "filename": "pavan-kumar.js", "icon": "js" },
+    { "id": "about", "filename": "about.ts", "icon": "ts" },
+    { "id": "projects", "filename": "projects.ts", "icon": "ts" },
+    { "id": "contact", "filename": "contact.sh", "icon": "sh" }
+  ]
+}
