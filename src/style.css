@@ -596,6 +596,12 @@ a:hover { opacity: 0.7; }
   user-select: none;
   max-width: 55%;
   overflow: hidden;
+  animation: driftAscii 30s linear infinite alternate;
+}
+
+@keyframes driftAscii {
+  0% { transform: translate(0, 0); }
+  100% { transform: translate(-15px, 20px); }
 }
 
 /* ============================================
@@ -658,11 +664,19 @@ a:hover { opacity: 0.7; }
   padding-bottom: 28px;
   opacity: 0;
   transform: translateY(12px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .timeline__item.visible {
   opacity: 1;
   transform: translateY(0);
+}
+.timeline__item:hover {
+  transform: translateX(6px);
+}
+.timeline__item:hover::before {
+  background: var(--text-primary);
+  transform: scale(1.2);
+  transition: all var(--transition-fast);
 }
 .timeline__item::before {
   content: '';
@@ -775,7 +789,7 @@ a:hover { opacity: 0.7; }
   padding: 18px 20px;
   opacity: 0;
   transform: translateY(12px);
-  transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.25s ease;
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.4s ease;
 }
 .venture-card.visible {
   opacity: 1;
@@ -783,6 +797,7 @@ a:hover { opacity: 0.7; }
 }
 .venture-card:hover {
   border-color: var(--text-muted);
+  box-shadow: var(--shadow-sm);
 }
 .venture-card__status {
   display: inline-flex;
@@ -858,7 +873,7 @@ a:hover { opacity: 0.7; }
   position: relative;
   opacity: 0;
   transform: translateY(16px);
-  transition: opacity 0.5s ease, transform 0.5s ease, border-color 0.25s ease;
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .project-card.visible {
   opacity: 1;
@@ -866,6 +881,7 @@ a:hover { opacity: 0.7; }
 }
 .project-card:hover {
   border-color: var(--text-muted);
+  box-shadow: var(--shadow-md);
 }
 
 .project-card__header {

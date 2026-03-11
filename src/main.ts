@@ -5,6 +5,7 @@ import { renderAbout } from './pages/about';
 import { renderProjects } from './pages/projects';
 import { renderContact } from './pages/contact';
 import { generateAsciiArt } from './components/AsciiBackground';
+import VanillaTilt from 'vanilla-tilt';
 
 // ============================================
 // State
@@ -246,7 +247,8 @@ function navigateTo(tabId: string) {
   if (!container) return;
 
   container.style.opacity = '0';
-  container.style.transform = 'translateY(8px)';
+  container.style.transform = 'translateY(12px)';
+  container.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
 
   setTimeout(() => {
     switch (tabId) {
@@ -269,7 +271,7 @@ function navigateTo(tabId: string) {
 
     // Animate in
     requestAnimationFrame(() => {
-      container.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      container.style.transition = 'opacity 0.4s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
       container.style.opacity = '1';
       container.style.transform = 'translateY(0)';
     });
@@ -278,12 +280,27 @@ function navigateTo(tabId: string) {
     requestAnimationFrame(() => {
       updateLineNumbers();
       setupScrollAnimations();
+      
+      // Initialize VanillaTilt for elements loaded in the view
+      VanillaTilt.init(document.querySelectorAll('.project-card, .venture-card') as unknown as HTMLElement[], {
+        max: 8,
+        speed: 400,
+        glare: true,
+        "max-glare": 0.05,
+        scale: 1.02
+      });
+      
+      VanillaTilt.init(document.querySelectorAll('.btn') as unknown as HTMLElement[], {
+        max: 15,
+        speed: 300,
+        scale: 1.05
+      });
     });
 
     // Scroll to top
     const editorContent = document.getElementById('editor-content');
     if (editorContent) editorContent.scrollTop = 0;
-  }, 150);
+  }, 100);
 }
 
 // ============================================
