@@ -162,20 +162,16 @@ function renderInfoPanel() {
   <span class="tag">&lt;p&gt;</span>
     ${data.profile.location}
   <span class="tag">&lt;/p&gt;</span>
-  <span class="tag">&lt;a</span> 
-    <span class="attr">href</span>=<span class="string">"mailto:${data.profile.email}"</span>
-  <span class="tag">&gt;</span>
+  <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="string">"mailto:${data.profile.email}"</span><span class="tag">&gt;</span>
     Email me
   <span class="tag">&lt;/a&gt;</span>
 <span class="tag">&lt;/section&gt;</span>
 
-<span class="comment">&lt;!-- education.html --&gt;</span>
+<span class="comment">&lt;!-- education --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"edu"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"edu-item"</span><span class="tag">&gt;</span>
-    <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"degree"</span><span class="tag">&gt;</span>${data.education.degree}<span class="tag">&lt;/span&gt;</span>
-    <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"uni"</span><span class="tag">&gt;</span>${data.education.university}<span class="tag">&lt;/span&gt;</span>
-    <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"period"</span><span class="tag">&gt;</span>${data.education.period}<span class="tag">&lt;/span&gt;</span>
-  <span class="tag">&lt;/div&gt;</span>
+  <span class="tag">&lt;span&gt;</span>${data.education.degree}<span class="tag">&lt;/span&gt;</span>
+  <span class="tag">&lt;span&gt;</span>${data.education.university}<span class="tag">&lt;/span&gt;</span>
+  <span class="tag">&lt;span&gt;</span>${data.education.period}<span class="tag">&lt;/span&gt;</span>
 <span class="tag">&lt;/div&gt;</span>
 </div>
   `;
