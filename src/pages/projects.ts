@@ -25,20 +25,11 @@ export function renderProjects(data: any): string {
       ? `<span class="project-card__badge">${project.hackathon}</span>`
       : '';
 
-    // Live preview iframe (only for projects with a live URL)
-    const previewHTML = project.links.live ? `
-      <div class="project-card__preview">
-        <iframe src="${project.links.live}" loading="lazy" sandbox="allow-scripts allow-same-origin" tabindex="-1" aria-hidden="true"></iframe>
-        <div class="project-card__preview-label">
-          <span class="project-card__preview-name">${project.name}</span>
-          <span class="project-card__preview-url">${project.links.live.replace('https://', '')}</span>
-        </div>
-      </div>
-    ` : '';
+    // Removed live preview iframe here; will be handled globally to bypass tilt transform context
+    const previewDataAttr = project.links.live ? `data-preview-url="${project.links.live}" data-preview-name="${project.name}"` : '';
 
     return `
-      <article class="project-card" style="transition-delay: ${i * 0.06}s">
-        ${previewHTML}
+      <article class="project-card" style="transition-delay: ${i * 0.06}s" ${previewDataAttr}>
         <div class="project-card__header">
           <h3 class="project-card__name">${project.name}</h3>
           <div style="display: flex; align-items: center; gap: 8px;">

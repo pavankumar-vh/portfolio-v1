@@ -295,6 +295,33 @@ function navigateTo(tabId: string) {
         speed: 300,
         scale: 1.05
       });
+
+      // Global live preview hover logic
+      const globalPreview = document.getElementById('global-preview');
+      const globalIframe = document.getElementById('global-preview-iframe') as HTMLIFrameElement;
+      const globalName = document.getElementById('global-preview-name');
+      const globalUrl = document.getElementById('global-preview-url');
+
+      if (globalPreview && globalIframe && globalName && globalUrl) {
+        document.querySelectorAll('.project-card[data-preview-url]').forEach(card => {
+          card.addEventListener('mouseenter', () => {
+            const url = (card as HTMLElement).dataset.previewUrl!;
+            const name = (card as HTMLElement).dataset.previewName!;
+            
+            if (globalIframe.src !== url) {
+              globalIframe.src = url;
+            }
+            globalName.textContent = name;
+            globalUrl.textContent = url.replace('https://', '');
+            
+            globalPreview.classList.add('visible');
+          });
+          
+          card.addEventListener('mouseleave', () => {
+            globalPreview.classList.remove('visible');
+          });
+        });
+      }
     });
 
     // Scroll to top

@@ -982,11 +982,8 @@ a:hover { opacity: 0.7; }
   opacity: 1;
 }
 
-/* Live Preview on Hover — middle screen fixed glassmorphism popup */
-.project-card {
-  position: relative;
-}
-.project-card__preview {
+/* Live Preview on Hover — Global middle screen fixed glassmorphism popup */
+.global-preview {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -1004,19 +1001,21 @@ a:hover { opacity: 0.7; }
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 9999;
+  z-index: 99999;
   box-shadow: 0 40px 80px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,255,255,0.05);
+  display: none;
 }
-[data-theme="light"] .project-card__preview {
+.global-preview.visible {
+  display: block;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+[data-theme="light"] .global-preview {
   background: rgba(250, 250, 250, 0.7);
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 40px 80px rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.04);
 }
-.project-card:hover .project-card__preview {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-.project-card__preview iframe {
+.global-preview iframe {
   width: 200%;
   height: 200%;
   border: none;
@@ -1024,7 +1023,7 @@ a:hover { opacity: 0.7; }
   transform-origin: top left;
   pointer-events: none;
 }
-.project-card__preview-label {
+.global-preview__label {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -1035,25 +1034,25 @@ a:hover { opacity: 0.7; }
   align-items: flex-end;
   justify-content: space-between;
 }
-[data-theme="light"] .project-card__preview-label {
+[data-theme="light"] .global-preview__label {
   background: linear-gradient(transparent, rgba(250,250,250,0.95));
 }
-.project-card__preview-name {
+.global-preview__name {
   font-family: var(--font-heading);
   font-weight: 600;
   font-size: 13px;
   color: var(--text-heading);
 }
-.project-card__preview-url {
+.global-preview__url {
   font-family: var(--font-mono);
   font-size: 9px;
   color: var(--text-muted);
 }
 @media (max-width: 767px) {
-  .project-card__preview { display: none; }
+  .global-preview { display: none !important; }
 }
 @media (hover: none) {
-  .project-card__preview { display: none; }
+  .global-preview { display: none !important; }
 }
 /* ============================================
    PAGE STYLES — CONTACT (Terminal)
