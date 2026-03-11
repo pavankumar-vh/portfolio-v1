@@ -162,7 +162,9 @@ function renderInfoPanel() {
   <span class="tag">&lt;p&gt;</span>
     ${data.profile.location}
   <span class="tag">&lt;/p&gt;</span>
-  <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="string">"mailto:${data.profile.email}"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;a</span> 
+    <span class="attr">href</span>=<span class="string">"mailto:${data.profile.email}"</span>
+  <span class="tag">&gt;</span>
     Email me
   <span class="tag">&lt;/a&gt;</span>
 <span class="tag">&lt;/section&gt;</span>
