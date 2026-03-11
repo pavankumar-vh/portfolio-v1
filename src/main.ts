@@ -150,7 +150,7 @@ function renderInfoPanel() {
   if (!el) return;
 
   el.innerHTML = `
-    <div class="info-code">
+<div class="info-code">
 <span class="comment">&lt;!-- profile.html --&gt;</span>
 <span class="tag">&lt;section</span> <span class="attr">class</span>=<span class="string">"scope-profile"</span><span class="tag">&gt;</span>
   <span class="tag">&lt;h3&gt;</span>
@@ -167,13 +167,15 @@ function renderInfoPanel() {
   <span class="tag">&lt;/a&gt;</span>
 <span class="tag">&lt;/section&gt;</span>
 
-<span class="comment">&lt;!-- education --&gt;</span>
+<span class="comment">&lt;!-- education.html --&gt;</span>
 <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"edu"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;span&gt;</span>${data.education.degree}<span class="tag">&lt;/span&gt;</span>
-  <span class="tag">&lt;span&gt;</span>${data.education.university}<span class="tag">&lt;/span&gt;</span>
-  <span class="tag">&lt;span&gt;</span>${data.education.period}<span class="tag">&lt;/span&gt;</span>
+  <span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"edu-item"</span><span class="tag">&gt;</span>
+    <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"degree"</span><span class="tag">&gt;</span>${data.education.degree}<span class="tag">&lt;/span&gt;</span>
+    <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"uni"</span><span class="tag">&gt;</span>${data.education.university}<span class="tag">&lt;/span&gt;</span>
+    <span class="tag">&lt;span</span> <span class="attr">class</span>=<span class="string">"period"</span><span class="tag">&gt;</span>${data.education.period}<span class="tag">&lt;/span&gt;</span>
+  <span class="tag">&lt;/div&gt;</span>
 <span class="tag">&lt;/div&gt;</span>
-    </div>
+</div>
   `;
 }
 
