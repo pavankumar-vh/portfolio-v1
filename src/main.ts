@@ -4,7 +4,6 @@ import { renderHome } from './pages/home';
 import { renderAbout } from './pages/about';
 import { renderProjects } from './pages/projects';
 import { renderContact } from './pages/contact';
-import { generateAsciiArt } from './components/AsciiBackground';
 import { openProjectDetail, type Project } from './components/ProjectDetail';
 import VanillaTilt from 'vanilla-tilt';
 
@@ -71,7 +70,8 @@ function renderTabs() {
 
   container.querySelectorAll('.tab').forEach(el => {
     el.addEventListener('click', () => {
-      const tabId = (el as HTMLElement).dataset.tab!;
+      const tabId = (el as HTMLElement).dataset['tab'];
+      if (!tabId) return;
       navigateTo(tabId);
     });
   });
@@ -106,7 +106,8 @@ function renderFileTree() {
 
   tree.querySelectorAll('.file-tree__item').forEach(el => {
     el.addEventListener('click', () => {
-      const tabId = (el as HTMLElement).dataset.tab!;
+      const tabId = (el as HTMLElement).dataset['tab'];
+      if (!tabId) return;
       navigateTo(tabId);
       // Close sidebar on mobile
       if (window.innerWidth < 768) {
@@ -201,7 +202,8 @@ function renderMobileNav() {
 
   container.querySelectorAll('.mobile-nav__tab').forEach(el => {
     el.addEventListener('click', () => {
-      const tabId = (el as HTMLElement).dataset.tab!;
+      const tabId = (el as HTMLElement).dataset['tab'];
+      if (!tabId) return;
       navigateTo(tabId);
     });
   });
@@ -302,14 +304,14 @@ function navigateTo(tabId: string) {
         document.querySelectorAll<HTMLElement>('.project-card[data-project-index]').forEach((card) => {
           card.addEventListener('click', (e) => {
             if ((e.target as Element).closest('a')) return;
-            const idx = parseInt(card.dataset.projectIndex ?? '0', 10);
+            const idx = parseInt(card.dataset['projectIndex'] ?? '0', 10);
             const project = data.projects[idx] as unknown as Project | undefined;
             if (project) openProjectDetail(project);
           });
           card.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
-              const idx = parseInt(card.dataset.projectIndex ?? '0', 10);
+              const idx = parseInt(card.dataset['projectIndex'] ?? '0', 10);
               const project = data.projects[idx] as unknown as Project | undefined;
               if (project) openProjectDetail(project);
             }
@@ -326,8 +328,9 @@ function navigateTo(tabId: string) {
       if (globalPreview && globalIframe && globalName && globalUrl) {
         document.querySelectorAll('.project-card[data-preview-url]').forEach(card => {
           card.addEventListener('mouseenter', () => {
-            const url = (card as HTMLElement).dataset.previewUrl!;
-            const name = (card as HTMLElement).dataset.previewName!;
+            const url = (card as HTMLElement).dataset['previewUrl'];
+            const name = (card as HTMLElement).dataset['previewName'];
+            if (!url || !name) return;
             
             if (globalIframe.src !== url) {
               globalIframe.src = url;
@@ -415,9 +418,10 @@ function setupEventListeners() {
   document.addEventListener('keydown', (e) => {
     if (e.ctrlKey || e.metaKey) {
       const tabMap: Record<string, string> = { '1': 'home', '2': 'about', '3': 'projects', '4': 'contact' };
-      if (tabMap[e.key]) {
+      const tabId = tabMap[e.key];
+      if (tabId) {
         e.preventDefault();
-        navigateTo(tabMap[e.key]);
+        navigateTo(tabId);
       }
     }
   });
