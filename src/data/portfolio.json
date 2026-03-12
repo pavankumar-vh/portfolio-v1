@@ -52,7 +52,17 @@
     "ai / ml": ["Gemini AI", "RAG Technology", "LLMs", "Vector Embeddings", "Graph Analytics"],
     "devops": ["Docker", "Kubernetes", "Git", "Vercel", "Render", "AWS"],
     "web3": ["Ethereum", "Web3.js", "Smart Contracts", "MetaMask"],
-    "security": ["JWT", "OAuth", "AES-256", "Helmet.js", "CORS"]
+    "security": ["JWT", "OAuth", "AES-256", "Helmet.js", "CORS"],
+    "photography & cinematography": [
+      "Professional Studio Setup",
+      "High-End Camera Systems",
+      "4K/8K Video Production",
+      "Color Grading & Color Science",
+      "Lighting Design & Control",
+      "Cinematic Composition",
+      "Post-Production Workflows",
+      "Professional Video Editing"
+    ]
   },
   "ventures": [
     {
