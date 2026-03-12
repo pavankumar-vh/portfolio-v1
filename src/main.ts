@@ -152,29 +152,19 @@ function renderInfoPanel() {
   if (!el) return;
 
   el.innerHTML = `
-<div class="info-code">
-<span class="comment">&lt;!-- profile.html --&gt;</span>
-<span class="tag">&lt;section</span> <span class="attr">class</span>=<span class="string">"scope-profile"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;h3&gt;</span>
-    ${data.profile.name.toUpperCase()}
-  <span class="tag">&lt;/h3&gt;</span>
-  <span class="tag">&lt;p&gt;</span>
-    ${data.profile.title}
-  <span class="tag">&lt;/p&gt;</span>
-  <span class="tag">&lt;p&gt;</span>
-    ${data.profile.location}
-  <span class="tag">&lt;/p&gt;</span>
-  <span class="tag">&lt;a</span> <span class="attr">href</span>=<span class="string">"mailto:${data.profile.email}"</span><span class="tag">&gt;</span>
-    Email me
-  <span class="tag">&lt;/a&gt;</span>
-<span class="tag">&lt;/section&gt;</span>
-
-<span class="comment">&lt;!-- education --&gt;</span>
-<span class="tag">&lt;div</span> <span class="attr">class</span>=<span class="string">"edu"</span><span class="tag">&gt;</span>
-  <span class="tag">&lt;span&gt;</span>${data.education.degree}<span class="tag">&lt;/span&gt;</span>
-  <span class="tag">&lt;span&gt;</span>${data.education.university}<span class="tag">&lt;/span&gt;</span>
-  <span class="tag">&lt;span&gt;</span>${data.education.period}<span class="tag">&lt;/span&gt;</span>
-<span class="tag">&lt;/div&gt;</span>
+<div class="info-code info-code--json" aria-label="Profile JSON preview">
+  <div class="info-code__line"><span class="comment">// profile.json</span></div>
+  <div class="info-code__line"><span class="punct">{</span></div>
+  <div class="info-code__line info-code__line--indent-1"><span class="json-key">"name"</span><span class="punct">:</span> <span class="json-string">"${data.profile.name}"</span><span class="punct">,</span></div>
+  <div class="info-code__line info-code__line--indent-1"><span class="json-key">"title"</span><span class="punct">:</span> <span class="json-string">"${data.profile.title}"</span><span class="punct">,</span></div>
+  <div class="info-code__line info-code__line--indent-1"><span class="json-key">"location"</span><span class="punct">:</span> <span class="json-string">"${data.profile.location}"</span><span class="punct">,</span></div>
+  <div class="info-code__line info-code__line--indent-1"><span class="json-key">"email"</span><span class="punct">:</span> <span class="json-string">"${data.profile.email}"</span><span class="punct">,</span></div>
+  <div class="info-code__line info-code__line--indent-1"><span class="json-key">"education"</span><span class="punct">:</span> <span class="punct">{</span></div>
+  <div class="info-code__line info-code__line--indent-2"><span class="json-key">"degree"</span><span class="punct">:</span> <span class="json-string">"${data.education.degree}"</span><span class="punct">,</span></div>
+  <div class="info-code__line info-code__line--indent-2"><span class="json-key">"university"</span><span class="punct">:</span> <span class="json-string">"${data.education.university}"</span><span class="punct">,</span></div>
+  <div class="info-code__line info-code__line--indent-2"><span class="json-key">"period"</span><span class="punct">:</span> <span class="json-string">"${data.education.period}"</span></div>
+  <div class="info-code__line info-code__line--indent-1"><span class="punct">}</span></div>
+  <div class="info-code__line"><span class="punct">}</span></div>
 </div>
   `;
 }

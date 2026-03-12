@@ -4,7 +4,7 @@ export function renderHome(data: any): string {
   const ascii = generateAsciiArt();
 
   return `
-    <div class="hero">
+    <div class="hero hero--matrix-face" style="--hero-face-url: url('/me-group.jpg');">
       <div class="ascii-bg">${ascii}</div>
 
       <div class="hero__subtitle">
