@@ -1,3 +1,5 @@
+import { skillIconMap } from '../components/SkillIcons';
+
 export function renderAbout(data: any): string {
   const skillIcons: Record<string, string> = {
     'languages': '⟨⟩',
@@ -35,7 +37,15 @@ export function renderAbout(data: any): string {
   `).join('');
 
   const skillCategories = Object.entries(data.skills).map(([category, skills], i) => {
-    const tags = (skills as string[]).map(s => `<span class="skill-tag">${s}</span>`).join('');
+    const tags = (skills as string[]).map(s => {
+      const icon = skillIconMap[s] || '';
+      return `
+        <span class="skill-tag">
+          ${icon ? `<span class="skill-tag__icon">${icon}</span>` : ''}
+          <span class="skill-tag__text">${s}</span>
+        </span>
+      `;
+    }).join('');
     const icon = skillIcons[category] || '•';
     return `
       <div class="skills-category" style="transition-delay: ${i * 0.08}s">
