@@ -151,20 +151,70 @@ function renderInfoPanel() {
   const el = document.getElementById('info-panel-content');
   if (!el) return;
 
+  // Avatar initials from name
+  const initials = data.profile.name
+    .split(' ')
+    .filter(Boolean)
+    .map((w: string) => w[0])
+    .slice(0, 2)
+    .join('');
+
   el.innerHTML = `
-<div class="info-code info-code--json" aria-label="Profile JSON preview">
-  <div class="info-code__line"><span class="comment">// profile.json</span></div>
-  <div class="info-code__line"><span class="punct">{</span></div>
-  <div class="info-code__line info-code__line--indent-1"><span class="json-key">"name"</span><span class="punct">:</span> <span class="json-string">"${data.profile.name}"</span><span class="punct">,</span></div>
-  <div class="info-code__line info-code__line--indent-1"><span class="json-key">"title"</span><span class="punct">:</span> <span class="json-string">"${data.profile.title}"</span><span class="punct">,</span></div>
-  <div class="info-code__line info-code__line--indent-1"><span class="json-key">"location"</span><span class="punct">:</span> <span class="json-string">"${data.profile.location}"</span><span class="punct">,</span></div>
-  <div class="info-code__line info-code__line--indent-1"><span class="json-key">"email"</span><span class="punct">:</span> <span class="json-string">"${data.profile.email}"</span><span class="punct">,</span></div>
-  <div class="info-code__line info-code__line--indent-1"><span class="json-key">"education"</span><span class="punct">:</span> <span class="punct">{</span></div>
-  <div class="info-code__line info-code__line--indent-2"><span class="json-key">"degree"</span><span class="punct">:</span> <span class="json-string">"${data.education.degree}"</span><span class="punct">,</span></div>
-  <div class="info-code__line info-code__line--indent-2"><span class="json-key">"university"</span><span class="punct">:</span> <span class="json-string">"${data.education.university}"</span><span class="punct">,</span></div>
-  <div class="info-code__line info-code__line--indent-2"><span class="json-key">"period"</span><span class="punct">:</span> <span class="json-string">"${data.education.period}"</span></div>
-  <div class="info-code__line info-code__line--indent-1"><span class="punct">}</span></div>
-  <div class="info-code__line"><span class="punct">}</span></div>
+<div class="info-profile-card">
+
+  <!-- Header: avatar + name/title -->
+  <div class="info-profile-card__header">
+    <div class="info-profile-card__avatar">
+      <span class="info-profile-card__avatar-text">${initials}</span>
+    </div>
+    <div class="info-profile-card__meta">
+      <div class="info-profile-card__name">${data.profile.name}</div>
+      <div class="info-profile-card__title">${data.profile.title}</div>
+    </div>
+  </div>
+
+  <!-- JSON Code block -->
+  <div class="info-code" aria-label="Profile JSON preview">
+    <span class="info-code__comment">// profile.json</span>
+    <span class="info-code__brace">{</span>
+
+    <span class="info-code__field">
+      <span class="info-code__key">"location"</span><span class="info-code__colon">:</span>
+      <span class="info-code__val" title="${data.profile.location}">"${data.profile.location}"<span class="punct">,</span></span>
+    </span>
+
+    <span class="info-code__field">
+      <span class="info-code__key">"email"</span><span class="info-code__colon">:</span>
+      <span class="info-code__val" title="${data.profile.email}">"${data.profile.email}"<span class="punct">,</span></span>
+    </span>
+
+    <span class="info-code__section-label">"education": {</span>
+
+    <span class="info-code__field info-code__field--nested">
+      <span class="info-code__key">"degree"</span><span class="info-code__colon">:</span>
+      <span class="info-code__val info-code__val--wrap">"${data.education.degree}"<span class="punct">,</span></span>
+    </span>
+
+    <span class="info-code__field info-code__field--nested">
+      <span class="info-code__key">"university"</span><span class="info-code__colon">:</span>
+      <span class="info-code__val info-code__val--wrap">"${data.education.university}"<span class="punct">,</span></span>
+    </span>
+
+    <span class="info-code__field info-code__field--nested">
+      <span class="info-code__key">"period"</span><span class="info-code__colon">:</span>
+      <span class="info-code__val">"${data.education.period}"</span>
+    </span>
+
+    <span class="info-code__brace" style="padding-left:14px">}</span>
+    <span class="info-code__brace">}</span>
+  </div>
+
+  <!-- Status badge -->
+  <div class="info-status">
+    <span class="info-status__dot"></span>
+    <span class="info-status__text">available for work</span>
+  </div>
+
 </div>
   `;
 }

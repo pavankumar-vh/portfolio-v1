@@ -58,7 +58,7 @@
   --sidebar-width: 220px;
   --sidebar-collapsed: 0px;
   --tab-height: 36px;
-  --info-panel-width: 280px;
+  --info-panel-width: 300px;
   --line-number-width: 44px;
   --mobile-nav-height: 56px;
 
@@ -455,46 +455,175 @@ a:hover { opacity: 0.7; }
   overflow: hidden;
 }
 .info-panel__content {
-  padding: 14px;
+  padding: 12px 10px;
   font-family: var(--font-mono);
-  font-size: 15px;
-  line-height: 1.8;
+  font-size: 11px;
+  line-height: 1.7;
   color: var(--text-muted);
 }
 
-/* Info panel code-styled blocks */
+/* ── Info Panel: Profile Card ── */
+.info-profile-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-profile-card__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 2px;
+}
+
+.info-profile-card__avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background: var(--bg-tab-active);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+}
+
+.info-profile-card__avatar-text {
+  line-height: 1;
+}
+
+.info-profile-card__meta {
+  min-width: 0;
+}
+
+.info-profile-card__name {
+  font-family: var(--font-heading);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-heading);
+  letter-spacing: -0.2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.info-profile-card__title {
+  font-size: 10px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 1px;
+}
+
+/* ── Info Panel: Code Block ── */
 .info-code {
-  white-space: normal;
-  word-break: break-word;
-}
-
-.info-code--json {
   background: var(--bg-primary);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  padding: 8px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px 11px;
+  font-size: 10.5px;
+  line-height: 1.85;
+  overflow: hidden;
 }
 
-.info-code__line {
+.info-code__comment {
   display: block;
-  line-height: 1.7;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 4px;
+  font-size: 10px;
 }
 
-.info-code__line--indent-1 {
-  padding-left: 16px;
+.info-code__brace {
+  display: block;
+  color: var(--text-secondary);
 }
 
-.info-code__line--indent-2 {
-  padding-left: 32px;
+.info-code__field {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 4px;
+  align-items: baseline;
+  padding-left: 14px;
 }
 
-.info-code__line--gap {
-  height: 10px;
+.info-code__field--nested {
+  padding-left: 28px;
 }
-.info-code .comment { color: var(--text-muted); font-style: italic; }
-.info-code .json-key { color: var(--syntax-orange); }
-.info-code .json-string { color: var(--syntax-green); }
+
+.info-code__key {
+  color: var(--syntax-orange);
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.info-code__colon {
+  color: var(--text-secondary);
+  margin-right: 4px;
+}
+
+.info-code__val {
+  color: var(--syntax-green);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.info-code__val--wrap {
+  white-space: normal;
+  word-break: break-all;
+  line-height: 1.5;
+}
+
+.info-code__section-label {
+  display: block;
+  color: var(--syntax-blue);
+  padding-left: 14px;
+}
+
 .info-code .punct { color: var(--text-secondary); }
+
+/* ── Info Panel: Status Badge ── */
+.info-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.info-status__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--syntax-green);
+  flex-shrink: 0;
+  box-shadow: 0 0 4px var(--syntax-green);
+  animation: infoPulse 2.4s ease-in-out infinite;
+}
+
+@keyframes infoPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.info-status__text {
+  color: var(--syntax-green);
+  font-style: italic;
+}
 
 /* ============================================
    PAGE STYLES — HERO
