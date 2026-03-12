@@ -29,7 +29,7 @@ export function renderProjects(data: any): string {
     const previewDataAttr = project.links.live ? `data-preview-url="${project.links.live}" data-preview-name="${project.name}"` : '';
 
     return `
-      <article class="project-card" style="transition-delay: ${i * 0.06}s" ${previewDataAttr}>
+      <article class="project-card project-card--clickable" style="transition-delay: ${i * 0.06}s" ${previewDataAttr} data-project-index="${i}" role="button" tabindex="0" aria-label="Open ${project.name} details">
         <div class="project-card__header">
           <h3 class="project-card__name">${project.name}</h3>
           <div style="display: flex; align-items: center; gap: 8px;">
@@ -42,6 +42,7 @@ export function renderProjects(data: any): string {
         <div class="project-card__features">${featureTags}</div>
         <div class="project-card__tech">${techTags}</div>
         ${links.length > 0 ? `<div class="project-card__links">${links.join('')}</div>` : ''}
+        <div class="project-card__explore">// click to explore →</div>
       </article>
     `;
   }).join('');

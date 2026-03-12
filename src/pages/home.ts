@@ -4,7 +4,7 @@ export function renderHome(data: any): string {
   const ascii = generateAsciiArt();
 
   return `
-    <div class="hero">
+    <div class="hero hero--matrix-face" style="--hero-face-url: url('/me-group.jpg');">
       <div class="ascii-bg">${ascii}</div>
 
       <div class="hero__subtitle">
@@ -26,6 +26,26 @@ export function renderHome(data: any): string {
         <a href="mailto:${data.profile.email}" class="btn btn--ghost">
           Get in Touch
         </a>
+      </div>
+    </div>
+
+    <!-- Current Venture Section -->
+    <div class="current-venture">
+      <div class="current-venture__label">
+        <span class="pd-comment">// building</span>
+      </div>
+      <div class="current-venture__card">
+        <div class="current-venture__header">
+          <h2 class="current-venture__name">${data.ventures[0].name}</h2>
+          <span class="current-venture__badge current-venture__badge--active">Active</span>
+        </div>
+        <div class="current-venture__role">
+          <span class="pd-kw">const</span> <span class="pd-var">role</span> = <span class="pd-string">"${data.ventures[0].role}"</span>;
+        </div>
+        <p class="current-venture__desc">${data.ventures[0].description}</p>
+        <div class="current-venture__meta">
+          <span class="current-venture__period">${data.ventures[0].period}</span>
+        </div>
       </div>
     </div>
   `;

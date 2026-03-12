@@ -1,4 +1,18 @@
+import { skillIconMap } from '../components/SkillIcons';
+
 export function renderAbout(data: any): string {
+  const skillIcons: Record<string, string> = {
+    'languages': '⟨⟩',
+    'frontend': '◆',
+    'backend': '⚙',
+    'databases': '⬙',
+    'ai / ml': '◯',
+    'devops': '⚡',
+    'web3': '₿',
+    'security': '🔒',
+    'photography & cinematography': '📹'
+  };
+
   const experienceHTML = data.experience.map((exp: any, i: number) => `
     <div class="timeline__item" style="transition-delay: ${i * 0.1}s">
       <div class="timeline__header">
@@ -23,10 +37,22 @@ export function renderAbout(data: any): string {
   `).join('');
 
   const skillCategories = Object.entries(data.skills).map(([category, skills], i) => {
-    const tags = (skills as string[]).map(s => `<span class="skill-tag">${s}</span>`).join('');
+    const tags = (skills as string[]).map(s => {
+      const icon = skillIconMap[s] || '';
+      return `
+        <span class="skill-tag">
+          ${icon ? `<span class="skill-tag__icon">${icon}</span>` : ''}
+          <span class="skill-tag__text">${s}</span>
+        </span>
+      `;
+    }).join('');
+    const icon = skillIcons[category] || '•';
     return `
       <div class="skills-category" style="transition-delay: ${i * 0.08}s">
-        <div class="skills-category__label">${category}</div>
+        <div class="skills-category__label">
+          <span class="skills-category__icon">${icon}</span>
+          ${category}
+        </div>
         <div class="skill-tags">${tags}</div>
       </div>
     `;
@@ -70,7 +96,7 @@ export function renderAbout(data: any): string {
 
       <div class="section-header" style="margin-bottom: 20px;">
         <h2 class="section-header__title" style="font-size: 1.4rem;">Skills</h2>
-        <p class="section-header__subtitle">// technical toolkit</p>
+        <p class="section-header__subtitle">// technical toolkit + creative expertise</p>
       </div>
       <div class="skills-section">
         ${skillCategories}

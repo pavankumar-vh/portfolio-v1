@@ -6,7 +6,7 @@ export function generateAsciiArt(): string {
   ];
   
   // Pick a random pattern each time
-  const pattern = patterns[Math.floor(Math.random() * patterns.length)];
+  const pattern = patterns[Math.floor(Math.random() * patterns.length)] ?? patterns[0]!;
   return pattern;
 }
 
