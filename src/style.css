@@ -1332,7 +1332,7 @@ a:hover { opacity: 0.7; }
 
 /* Slide-in panel */
 .detail-panel {
-  width: min(980px, 100%);
+  width: min(480px, 90%);
   height: 100%;
   background: var(--bg-primary);
   border-left: 1px solid var(--border);
@@ -1426,14 +1426,14 @@ a:hover { opacity: 0.7; }
 
 .detail-body {
   display: grid;
-  grid-template-columns: 1fr 400px;
+  grid-template-columns: 1fr;
   min-height: 100%;
 }
 
 /* Code column */
 .detail-code-col {
   padding: 40px 36px 60px;
-  border-right: 1px solid var(--border);
+  border-right: none;
   overflow: hidden;
 }
 
@@ -1607,7 +1607,7 @@ a:hover { opacity: 0.7; }
 
 /* Live preview column */
 .detail-preview {
-  display: flex;
+  display: none;
   flex-direction: column;
   background: var(--bg-secondary);
   position: sticky;
