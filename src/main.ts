@@ -5,6 +5,7 @@ import { renderAbout } from './pages/about';
 import { renderProjects } from './pages/projects';
 import { renderContact } from './pages/contact';
 import { generateAsciiArt } from './components/AsciiBackground';
+import { openProjectDetail, type Project } from './components/ProjectDetail';
 import VanillaTilt from 'vanilla-tilt';
 
 // ============================================
@@ -295,6 +296,26 @@ function navigateTo(tabId: string) {
         speed: 300,
         scale: 1.05
       });
+
+      // Project detail click handlers
+      if (tabId === 'projects') {
+        document.querySelectorAll<HTMLElement>('.project-card[data-project-index]').forEach((card) => {
+          card.addEventListener('click', (e) => {
+            if ((e.target as Element).closest('a')) return;
+            const idx = parseInt(card.dataset.projectIndex ?? '0', 10);
+            const project = data.projects[idx] as unknown as Project | undefined;
+            if (project) openProjectDetail(project);
+          });
+          card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              const idx = parseInt(card.dataset.projectIndex ?? '0', 10);
+              const project = data.projects[idx] as unknown as Project | undefined;
+              if (project) openProjectDetail(project);
+            }
+          });
+        });
+      }
 
       // Global live preview hover logic
       const globalPreview = document.getElementById('global-preview');

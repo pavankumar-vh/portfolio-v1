@@ -80,6 +80,8 @@
   "projects": [
     {
       "name": "RAGHost",
+      "status": "Live",
+      "year": "2024",
       "tagline": "// open-source AI chatbot platform",
       "description": "Full-stack RAG chatbot builder. Upload documents, connect Pinecone and Gemini, deploy an embeddable chat widget instantly. Engineered for scale with Redis caching, Bull queues, and CPU clustering.",
       "tech": ["React", "Node.js", "MongoDB", "Firebase", "Pinecone", "Gemini AI", "Redis"],
@@ -90,6 +92,8 @@
     },
     {
       "name": "SynapseAI",
+      "status": "Live",
+      "year": "2025",
       "tagline": "// AI content generation platform",
       "description": "AI content generation platform powered by Gemini 2.0. Generates social media posts, blog ideas, full articles, and code explanations. Built with a credit system, admin dashboard, and support ticket flow.",
       "tech": ["React", "Node.js", "MongoDB", "Firebase", "Gemini AI", "Framer Motion"],
@@ -100,6 +104,8 @@
     },
     {
       "name": "Quantora AI",
+      "status": "Live",
+      "year": "2025",
       "tagline": "// graph-native fraud detection",
       "description": "Real-time fraud detection framework using dynamic graph modeling. Custom SAGRA algorithm detects coordinated fraud rings, circular money flows, and synthetic identity clusters with an explainability layer.",
       "tech": ["Next.js", "FastAPI", "Python", "Graph Analytics", "Louvain Detection"],
@@ -111,6 +117,8 @@
     },
     {
       "name": "typing.dev",
+      "status": "Open Source",
+      "year": "2025",
       "tagline": "// typing trainer for developers",
       "description": "Terminal-aesthetic typing practice app with AI-generated code snippets. CRT phosphor design with JetBrains Mono, scanline effects, and a global leaderboard. Built for developers who want to type faster.",
       "tech": ["React", "Node.js", "MongoDB", "Firebase", "Gemini API", "Framer Motion"],
@@ -121,6 +129,8 @@
     },
     {
       "name": "Physique OS",
+      "status": "Open Source",
+      "year": "2025",
       "tagline": "// body transformation tracker",
       "description": "Visual fitness tracking platform with interactive charts, before/after photo sliders, streak system, and achievement badges. Glassmorphism UI with measurement tracking and PDF export.",
       "tech": ["React", "Node.js", "MongoDB", "JWT", "Chart.js"],
@@ -130,6 +140,8 @@
     },
     {
       "name": "LoopZen EventVision",
+      "status": "Private",
+      "year": "2025",
       "tagline": "// AI event photo delivery",
       "description": "Face-recognition system for events. Guests scan a QR code, register their face, and receive their photos instantly. Successfully handled 7,000+ guests at a single wedding event.",
       "tech": ["AI/ML", "Face Recognition", "QR Integration", "Node.js"],
