@@ -97,21 +97,9 @@
       "tech": ["React", "Node.js", "MongoDB", "Firebase", "Pinecone", "Gemini AI", "Redis"],
       "features": ["Multi-bot management", "Analytics dashboard", "8 widget templates", "AES-256 encryption", "CPU clustering"],
       "links": { "live": "https://rag-host.vercel.app", "github": "https://github.com/pavankumar-vh/RAGHost" },
-      "stars": 4,
       "featured": true
     },
-    {
-      "name": "SynapseAI",
-      "status": "Live",
-      "year": "2025",
-      "tagline": "// AI content generation platform",
-      "description": "AI content generation platform powered by Gemini 2.0. Generates social media posts, blog ideas, full articles, and code explanations. Built with a credit system, admin dashboard, and support ticket flow.",
-      "tech": ["React", "Node.js", "MongoDB", "Firebase", "Gemini AI", "Framer Motion"],
-      "features": ["Credit system", "Admin dashboard", "Support tickets", "Generation history"],
-      "links": { "live": "https://synapse-ai-eight.vercel.app", "github": "https://github.com/pavankumar-vh/SynapseAI" },
-      "stars": 1,
-      "featured": true
-    },
+
     {
       "name": "Quantora AI",
       "status": "Live",
@@ -121,7 +109,6 @@
       "tech": ["Next.js", "FastAPI", "Python", "Graph Analytics", "Louvain Detection"],
       "features": ["SAGRA algorithm", "Real-time pipeline", "Fraud ring detection", "Explainability layer"],
       "links": { "live": "https://quantora-three.vercel.app", "github": "https://github.com/pavankumar-vh/Quantora" },
-      "stars": 1,
       "hackathon": "DigitHon 3.0",
       "featured": true
     },
@@ -134,7 +121,6 @@
       "tech": ["React", "Node.js", "MongoDB", "Firebase", "Gemini API", "Framer Motion"],
       "features": ["WPM/accuracy tracking", "AI-generated snippets", "Global leaderboard", "Activity heatmap"],
       "links": { "github": "https://github.com/pavankumar-vh/typing.dev" },
-      "stars": 1,
       "featured": true
     },
     {

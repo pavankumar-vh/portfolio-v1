@@ -346,46 +346,34 @@ function navigateTo(tabId: string) {
             if ((e.target as Element).closest('a')) return;
             const idx = parseInt(card.dataset['projectIndex'] ?? '0', 10);
             const project = data.projects[idx] as unknown as Project | undefined;
-            if (project) openProjectDetail(project);
+            if (project) {
+              openProjectDetail(project);
+              // Update stars in the detail overlay from cache
+              requestAnimationFrame(() => updateDetailStarsFromCache());
+            }
           });
           card.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
               const idx = parseInt(card.dataset['projectIndex'] ?? '0', 10);
               const project = data.projects[idx] as unknown as Project | undefined;
-              if (project) openProjectDetail(project);
+              if (project) {
+                openProjectDetail(project);
+                requestAnimationFrame(() => updateDetailStarsFromCache());
+              }
             }
           });
         });
+
+        // Filter logic
+        setupProjectFilters();
+
+        // Fetch live GitHub stars
+        fetchGitHubStars();
       }
 
-      // Global live preview hover logic
-      const globalPreview = document.getElementById('global-preview');
-      const globalIframe = document.getElementById('global-preview-iframe') as HTMLIFrameElement;
-      const globalName = document.getElementById('global-preview-name');
-      const globalUrl = document.getElementById('global-preview-url');
-
-      if (globalPreview && globalIframe && globalName && globalUrl) {
-        document.querySelectorAll('.project-card[data-preview-url]').forEach(card => {
-          card.addEventListener('mouseenter', () => {
-            const url = (card as HTMLElement).dataset['previewUrl'];
-            const name = (card as HTMLElement).dataset['previewName'];
-            if (!url || !name) return;
-            
-            if (globalIframe.src !== url) {
-              globalIframe.src = url;
-            }
-            globalName.textContent = name;
-            globalUrl.textContent = url.replace('https://', '');
-            
-            globalPreview.classList.add('visible');
-          });
-          
-          card.addEventListener('mouseleave', () => {
-            globalPreview.classList.remove('visible');
-          });
-        });
-      }
+      // Live preview tooltip — delayed, positioned near card
+      setupPreviewTooltip();
     });
 
     // Scroll to top
@@ -412,6 +400,69 @@ function toggleSidebar(forceState?: boolean) {
 }
 
 // ============================================
+// Live GitHub Stars
+// ============================================
+const starCache: Record<string, number> = {};
+
+async function fetchGitHubStars() {
+  const els = document.querySelectorAll<HTMLElement>('[data-github-repo]');
+  const repos = new Set<string>();
+  els.forEach(el => {
+    const repo = el.dataset['githubRepo'];
+    if (repo) repos.add(repo);
+  });
+
+  await Promise.all([...repos].map(async (repo) => {
+    // Use cache if available
+    if (starCache[repo] !== undefined) {
+      updateStarElements(repo, starCache[repo]);
+      return;
+    }
+    try {
+      const res = await fetch(`https://api.github.com/repos/${repo}`, {
+        headers: { 'Accept': 'application/vnd.github.v3+json' },
+      });
+      if (!res.ok) return;
+      const json = await res.json();
+      const count = typeof json.stargazers_count === 'number' ? json.stargazers_count : 0;
+      starCache[repo] = count;
+      updateStarElements(repo, count);
+    } catch {
+      // Silently fail — keep the dash placeholder
+    }
+  }));
+}
+
+function updateStarElements(repo: string, count: number) {
+  document.querySelectorAll<HTMLElement>(`[data-github-repo="${CSS.escape(repo)}"]`).forEach(el => {
+    const countSpan = el.querySelector('.project-card__stars-count');
+    if (countSpan) {
+      countSpan.textContent = String(count);
+    }
+    if (el.classList.contains('detail-stars')) {
+      el.textContent = `★ ${count}`;
+    }
+    if (el.classList.contains('detail-stars-code')) {
+      el.textContent = String(count);
+    }
+  });
+}
+
+function updateDetailStarsFromCache() {
+  document.querySelectorAll<HTMLElement>('#project-detail-overlay [data-github-repo]').forEach(el => {
+    const repo = el.dataset['githubRepo'];
+    if (repo && starCache[repo] !== undefined) {
+      if (el.classList.contains('detail-stars')) {
+        el.textContent = `★ ${starCache[repo]}`;
+      }
+      if (el.classList.contains('detail-stars-code')) {
+        el.textContent = String(starCache[repo]);
+      }
+    }
+  });
+}
+
+// ============================================
 // Terminal Typing Animation
 // ============================================
 function startTerminalAnimation() {
@@ -435,6 +486,84 @@ function setupScrollAnimations() {
 
   document.querySelectorAll('.timeline__item, .skills-category, .project-card, .venture-card').forEach(el => {
     observer.observe(el);
+  });
+}
+
+// ============================================
+// Preview Tooltip (near-card, delayed)
+// ============================================
+function setupPreviewTooltip() {
+  const tooltip = document.getElementById('preview-tooltip');
+  const iframe = document.getElementById('preview-tooltip-iframe') as HTMLIFrameElement | null;
+  const urlLabel = document.getElementById('preview-tooltip-url');
+  const visitLink = document.getElementById('preview-tooltip-link') as HTMLAnchorElement | null;
+  if (!tooltip || !iframe || !urlLabel || !visitLink) return;
+
+  // Reassign to const with narrowed types for use inside closures
+  const _tooltip = tooltip;
+  const _iframe = iframe;
+  const _urlLabel = urlLabel;
+  const _visitLink = visitLink;
+
+  let hoverTimer: ReturnType<typeof setTimeout> | null = null;
+  let hideTimer: ReturnType<typeof setTimeout> | null = null;
+  const DELAY = 500;
+  const HIDE_DELAY = 300;
+
+  function showTooltip(card: HTMLElement) {
+    const url = card.dataset['previewUrl'];
+    if (!url) return;
+
+    if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+
+    hoverTimer = setTimeout(() => {
+      if (_iframe.src !== url) _iframe.src = url;
+      _urlLabel.textContent = url.replace('https://', '');
+      _visitLink.href = url;
+
+      const rect = card.getBoundingClientRect();
+      const tooltipW = 320;
+      const tooltipH = 210;
+
+      let left = rect.right + 12;
+      let top = rect.top;
+
+      if (left + tooltipW > window.innerWidth - 12) {
+        left = rect.left - tooltipW - 12;
+      }
+      if (left < 12) {
+        left = Math.max(12, rect.left + (rect.width - tooltipW) / 2);
+        top = rect.bottom + 8;
+      }
+      if (top + tooltipH > window.innerHeight - 12) {
+        top = window.innerHeight - tooltipH - 12;
+      }
+      if (top < 12) top = 12;
+
+      _tooltip.style.left = `${left}px`;
+      _tooltip.style.top = `${top}px`;
+      _tooltip.classList.add('preview-tooltip--visible');
+    }, DELAY);
+  }
+
+  function hideTooltip() {
+    if (hoverTimer) { clearTimeout(hoverTimer); hoverTimer = null; }
+    hideTimer = setTimeout(() => {
+      _tooltip.classList.remove('preview-tooltip--visible');
+    }, HIDE_DELAY);
+  }
+
+  // Keep tooltip open when hovering the tooltip itself
+  tooltip.addEventListener('mouseenter', () => {
+    if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; }
+  });
+  tooltip.addEventListener('mouseleave', () => {
+    hideTooltip();
+  });
+
+  document.querySelectorAll<HTMLElement>('.project-card[data-preview-url]').forEach(card => {
+    card.addEventListener('mouseenter', () => showTooltip(card));
+    card.addEventListener('mouseleave', () => hideTooltip());
   });
 }
 
@@ -483,6 +612,49 @@ function setupEventListeners() {
     if (window.innerWidth < 768 && state.sidebarOpen) {
       toggleSidebar(false);
     }
+  });
+}
+
+// ============================================
+// Project Filters
+// ============================================
+function setupProjectFilters() {
+  const filterBtns = document.querySelectorAll<HTMLElement>('.projects-filter');
+  const allCards = document.querySelectorAll<HTMLElement>('.project-card[data-category]');
+  const featuredSection = document.querySelector<HTMLElement>('.projects-featured');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset['filter'] ?? 'all';
+
+      // Update active state
+      filterBtns.forEach(b => b.classList.remove('projects-filter--active'));
+      btn.classList.add('projects-filter--active');
+
+      // Show/hide featured section
+      if (featuredSection) {
+        const featuredCard = featuredSection.querySelector<HTMLElement>('.project-card[data-category]');
+        const featuredCategory = featuredCard?.dataset['category'] ?? '';
+        if (filter === 'all' || filter === featuredCategory) {
+          featuredSection.style.display = '';
+        } else {
+          featuredSection.style.display = 'none';
+        }
+      }
+
+      // Filter grid cards
+      allCards.forEach(card => {
+        // Skip cards inside featured section
+        if (card.closest('.projects-featured')) return;
+
+        const category = card.dataset['category'] ?? '';
+        if (filter === 'all' || filter === category) {
+          card.classList.remove('project-card--hidden');
+        } else {
+          card.classList.add('project-card--hidden');
+        }
+      });
+    });
   });
 }
 

@@ -10,7 +10,7 @@ export interface Project {
   tech: readonly string[];
   features: readonly string[];
   links: ProjectLinks;
-  stars?: number;
+  stars?: number; // kept for compat, now fetched live
   hackathon?: string;
   status?: string;
   year?: string;
@@ -26,6 +26,14 @@ export function openProjectDetail(project: Project): void {
   overlay.setAttribute('role', 'dialog');
   overlay.setAttribute('aria-modal', 'true');
   overlay.setAttribute('aria-label', `${project.name} details`);
+
+  const githubRepo = project.links.github
+    ? project.links.github.replace('https://github.com/', '')
+    : '';
+
+  const starsPlaceholder = githubRepo
+    ? `<span class="detail-stars" data-github-repo="${githubRepo}">★ –</span>`
+    : '';
 
   const slugName = project.name.toLowerCase().replace(/[^a-z0-9]/g, '-');
   const filename = `${slugName}.ts`;
@@ -107,7 +115,7 @@ export function openProjectDetail(project: Project): void {
             <div class="detail-meta-row">
               <span class="detail-badge ${resolvedBadgeClass}">${badgeLabel}</span>
               ${project.year ? `<span class="detail-year">${project.year}</span>` : ''}
-              ${project.stars ? `<span class="detail-stars">★ ${project.stars}</span>` : ''}
+              ${starsPlaceholder}
             </div>
 
             <h1 class="detail-name">${project.name}</h1>
@@ -123,7 +131,7 @@ export function openProjectDetail(project: Project): void {
               <span class="pd-kw">const</span> <span class="pd-var">${varName}</span> <span class="pd-punct">=</span> {<br>
               &nbsp;&nbsp;<span class="pd-prop">tech</span><span class="pd-punct">:</span> [${techArrayStr}],<br>
               &nbsp;&nbsp;<span class="pd-prop">features</span><span class="pd-punct">:</span> [${featuresArrayStr}],<br>
-              ${project.stars ? `&nbsp;&nbsp;<span class="pd-prop">stars</span><span class="pd-punct">:</span> <span class="pd-num">${project.stars}</span>,<br>` : ''}
+              ${githubRepo ? `&nbsp;&nbsp;<span class="pd-prop">stars</span><span class="pd-punct">:</span> <span class="pd-num detail-stars-code" data-github-repo="${githubRepo}">–</span>,<br>` : ''}
               ${project.hackathon ? `&nbsp;&nbsp;<span class="pd-prop">hackathon</span><span class="pd-punct">:</span> <span class="pd-string">"${project.hackathon}"</span>,<br>` : ''}
               };
             </div>
