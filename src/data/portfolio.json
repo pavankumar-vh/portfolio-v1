@@ -108,7 +108,7 @@
       "description": "Real-time fraud detection framework using dynamic graph modeling. Custom SAGRA algorithm detects coordinated fraud rings, circular money flows, and synthetic identity clusters with an explainability layer.",
       "tech": ["Next.js", "FastAPI", "Python", "Graph Analytics", "Louvain Detection"],
       "features": ["SAGRA algorithm", "Real-time pipeline", "Fraud ring detection", "Explainability layer"],
-      "links": { "live": "https://quantora-three.vercel.app", "github": "https://github.com/pavankumar-vh/Quantora" },
+      "links": { "live": "https://quantora-liard.vercel.app", "github": "https://github.com/pavankumar-vh/Quantora" },
       "hackathon": "DigitHon 3.0",
       "featured": true
     },
@@ -120,7 +120,7 @@
       "description": "Terminal-aesthetic typing practice app with AI-generated code snippets. CRT phosphor design with JetBrains Mono, scanline effects, and a global leaderboard. Built for developers who want to type faster.",
       "tech": ["React", "Node.js", "MongoDB", "Firebase", "Gemini API", "Framer Motion"],
       "features": ["WPM/accuracy tracking", "AI-generated snippets", "Global leaderboard", "Activity heatmap"],
-      "links": { "github": "https://github.com/pavankumar-vh/typing.dev" },
+      "links": { "live": "https://typingdotdev.netlify.app", "github": "https://github.com/pavankumar-vh/typing.dev" },
       "featured": true
     },
     {

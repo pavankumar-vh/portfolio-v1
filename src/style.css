@@ -127,6 +127,9 @@ body {
   transition: background-color var(--transition-base), color var(--transition-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
 }
 
 #app {
@@ -1631,11 +1634,11 @@ a:hover { opacity: 0.7; }
   position: relative;
 }
 .preview-tooltip__iframe-wrap iframe {
-  width: 250%;
-  height: 250%;
+  width: 1440px;
+  height: 900px;
   border: none;
-  transform: scale(0.4);
   transform-origin: top left;
+  transform: scale(calc(320 / 1440));
   pointer-events: none;
 }
 @media (max-width: 767px) {
@@ -1818,6 +1821,8 @@ a:hover { opacity: 0.7; }
 /* ============================================
    RESPONSIVE
    ============================================ */
+
+/* ── Hide info panel on smaller desktops (original) ── */
 @media (max-width: 1199px) {
   .info-panel {
     width: 0;
@@ -1827,6 +1832,7 @@ a:hover { opacity: 0.7; }
   }
 }
 
+/* ── Mobile (≤767px) ── */
 @media (max-width: 767px) {
   .hero--matrix-face::before {
     inset: 0;
@@ -1834,11 +1840,11 @@ a:hover { opacity: 0.7; }
     opacity: 0.22;
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.25) 45%, rgba(0, 0, 0, 0) 100%);
   }
-
   .hero--matrix-face::after {
     opacity: 0.32;
   }
 
+  /* Sidebar overlay */
   .sidebar {
     position: fixed;
     left: 0;
@@ -1858,29 +1864,132 @@ a:hover { opacity: 0.7; }
   }
 
   .mobile-nav { display: block; }
+  .line-numbers { display: none; }
+  .ascii-bg { display: none; }
 
   .editor-content {
     padding: 20px 16px 100px;
   }
 
-  .line-numbers { display: none; }
+  /* Hero — prevent horizontal overflow */
+  .hero__name {
+    letter-spacing: -2px;
+    white-space: normal;
+    word-break: break-word;
+  }
+  .hero__tagline {
+    max-width: 100%;
+  }
+  .hero__cta {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
 
+  /* Projects */
   .projects-grid {
     grid-template-columns: 1fr;
   }
+  .projects-filters {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .projects-filters__tabs {
+    flex-wrap: wrap;
+  }
 
-  .project-card--featured {
-    padding: 22px 20px;
+  .project-card--featured .project-card__top,
+  .project-card--featured .project-card__name,
+  .project-card--featured .project-card__desc,
+  .project-card--featured .project-card__highlights {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .project-card--featured .project-card__top {
+    padding-top: 16px;
+  }
+  .project-card--featured .project-card__footer {
+    margin-left: 16px;
+    margin-right: 16px;
+    padding-bottom: 18px;
   }
   .project-card--featured .project-card__name {
     font-size: 17px;
   }
-
-  .hero__name {
-    letter-spacing: -2px;
+  .project-card__terminal-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
-  .ascii-bg { display: none; }
+  /* Ventures */
+  .ventures {
+    grid-template-columns: 1fr;
+  }
+  .current-venture__card {
+    padding: 20px 16px;
+  }
+  .current-venture__meta {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* Terminal */
+  .terminal {
+    max-width: 100%;
+  }
+}
+
+/* ── Small Mobile (≤480px) ── */
+@media (max-width: 480px) {
+  .editor-content {
+    padding: 16px 12px 90px;
+  }
+
+  .tab {
+    padding: 0 10px;
+    font-size: 10px;
+  }
+
+  .hero__name {
+    font-size: clamp(1.8rem, 12vw, 2.6rem);
+    letter-spacing: -1px;
+  }
+
+  .hero__cta {
+    flex-direction: column;
+  }
+  .hero__cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .project-card__footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .projects-filters__prompt {
+    display: none;
+  }
+
+  .current-venture__name {
+    font-size: 1.15rem;
+  }
+
+  .terminal__body {
+    font-size: 12px;
+    overflow-x: auto;
+  }
+
+  .contact-cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .mobile-nav__tab {
+    font-size: 8px;
+  }
 }
 
 /* ============================================
@@ -2268,7 +2377,7 @@ a:hover { opacity: 0.7; }
   }
 
   .detail-code-col {
-    padding: 24px 18px 48px;
+    padding: 20px 16px 40px;
     border-right: none;
     border-bottom: 1px solid var(--border);
     order: 2;
@@ -2276,16 +2385,67 @@ a:hover { opacity: 0.7; }
 
   .detail-preview {
     position: static;
-    height: 260px;
+    height: 220px;
     order: 1;
     border-bottom: 1px solid var(--border);
   }
 
   .detail-name {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
+  }
+
+  .detail-tagline {
+    font-size: 12px;
   }
 
   .detail-esc-hint {
     display: none;
+  }
+
+  .detail-tab {
+    font-size: 11px;
+  }
+
+  .detail-tags {
+    gap: 5px;
+  }
+
+  .detail-tag {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+
+  .detail-links {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .detail-links .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .detail-code-block {
+    font-size: 12px;
+    overflow-x: auto;
+  }
+
+  .detail-meta-row {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .detail-code-col {
+    padding: 16px 12px 32px;
+  }
+
+  .detail-name {
+    font-size: 1.3rem;
+  }
+
+  .detail-preview {
+    height: 180px;
   }
 }
