@@ -124,14 +124,14 @@
       "featured": true
     },
     {
-      "name": "Physique OS",
-      "status": "Open Source",
-      "year": "2025",
-      "tagline": "// body transformation tracker",
-      "description": "Visual fitness tracking platform with interactive charts, before/after photo sliders, streak system, and achievement badges. Glassmorphism UI with measurement tracking and PDF export.",
-      "tech": ["React", "Node.js", "MongoDB", "JWT", "Chart.js"],
-      "features": ["Interactive charts", "Photo comparison", "Achievement badges", "PDF export"],
-      "links": { "github": "https://github.com/pavankumar-vh/physiqueOS" },
+      "name": "Life OS",
+      "status": "Live",
+      "year": "2026",
+      "tagline": "// full-stack personal operating system",
+      "description": "A monorepo personal operating system for tracking habits, goals, journal entries, workouts, meals, sleep, finances, notes, whiteboards, vault content, and more. Includes Google OAuth, Calendar sync, Drive backups, Fitness data sync, and an AI assistant layer.",
+      "tech": ["Next.js", "React", "TypeScript", "Node.js", "Express.js", "MongoDB", "Tailwind CSS", "Framer Motion", "Zustand", "Google APIs"],
+      "features": ["Habit streaks and goal tracking", "Journal, workout, and meal logs", "Notes, whiteboard, and flashcards", "Google Calendar / Drive / Fitness sync", "AI chat and context-aware responses"],
+      "links": { "live": "https://life-os.pavankumarvh.me", "github": "https://github.com/pavankumar-vh/life-os" },
       "featured": true
     },
     {
