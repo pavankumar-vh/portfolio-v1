@@ -113,6 +113,18 @@
       "featured": true
     },
     {
+      "name": "Luvara",
+      "status": "Open Source",
+      "year": "2026",
+      "tagline": "// hackathon drug-repurposing intelligence engine",
+      "description": "Full-stack molecular insight platform focused on AI-assisted drug repurposing. Combines multi-agent reasoning, biochemical data ingestion, and clinical-trial intelligence into an interactive dashboard with research workflows.",
+      "tech": ["React", "TypeScript", "Vite", "Node.js", "Express.js", "MongoDB", "LangGraph", "Groq", "Tailwind CSS", "Framer Motion"],
+      "features": ["AI analysis pipeline", "PubChem + ClinicalTrials integration", "Interactive AI skeptic chatbot (SSE)", "3D molecular visualization", "On-demand report generation"],
+      "links": { "live": "https://luvara.vercel.app/", "github": "https://github.com/pavankumar-vh/Luvara" },
+      "hackathon": "Hackathon Project",
+      "featured": true
+    },
+    {
       "name": "typing.dev",
       "status": "Open Source",
       "year": "2025",
