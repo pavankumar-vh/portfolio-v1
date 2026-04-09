@@ -7,6 +7,14 @@ import { renderContact } from './pages/contact';
 import { openProjectDetail, type Project } from './components/ProjectDetail';
 import VanillaTilt from 'vanilla-tilt';
 
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
+const GA_TRACKING_ID = 'G-ECDVYS228F';
+
 // ============================================
 // State
 // ============================================
@@ -280,6 +288,8 @@ function navigateTo(tabId: string) {
   state.currentTab = tabId;
   window.location.hash = tabId;
 
+  trackPageView(tabId);
+
   // Update active states
   renderTabs();
   renderFileTree();
@@ -380,6 +390,15 @@ function navigateTo(tabId: string) {
     const editorContent = document.getElementById('editor-content');
     if (editorContent) editorContent.scrollTop = 0;
   }, 100);
+}
+
+function trackPageView(tabId: string) {
+  if (typeof window.gtag !== 'function') return;
+
+  window.gtag('config', GA_TRACKING_ID, {
+    page_path: `/#${tabId}`,
+    page_title: `${tabId} | Portfolio`,
+  });
 }
 
 // ============================================
